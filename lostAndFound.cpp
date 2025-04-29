@@ -70,30 +70,7 @@ void addLostInfo()
  
 }
 
-void viewLostInfo()
-{
-     ifstream file("data/lostinfo.txt");
 
-
-    string line;
-    int count = 1;
-    while (getline(file, line))
-    {
-        stringstream ss(line);
-        string name, contact, details;
-
-        getline(ss, name, '|');
-        getline(ss, contact, '|');
-        getline(ss, details, '|'); // Read until the next delimiter (or end)
-
-        cout << "Lost Item " << count++ << ":\n";
-        cout << "  Name: " << name << "\n";
-        cout << "  Contact: " << contact << "\n";
-        cout << "  Details: " << details << "\n\n";
-    }
-
-    file.close();
-}
 void addFindInfo(){
     string name, contact, details;
 
@@ -117,26 +94,48 @@ void addFindInfo(){
 }
 
 
+void viewSideBySide() {
+    ifstream lostFile("data/lostinfo.txt");
+    ifstream foundFile("data/findinfo.txt");  // ✅ Corrected filename
 
+    if (!lostFile.is_open() || !foundFile.is_open()) {
+        cerr << "Error: Could not open one or both files.\n";
+        return;
+    }
 
-void viewFindInfo()
+    cout << left << setw(50) << "Lost Items"
+         << "| " << left << setw(50) << "Found Items" << '\n';
+    cout << string(105, '-') << '\n';
 
-   { ifstream file("data/findinfo.txt");
+    string lostLine, foundLine;
+    while (true) {
+        string lostText = "", foundText = "";
 
+        if (getline(lostFile, lostLine)) {
+            stringstream ss(lostLine);
+            string name, contact, details;
+            getline(ss, name, '|');
+            getline(ss, contact, '|');
+            getline(ss, details, '|');
+            lostText = name + " - " + contact + " - " + details;
+        }
 
-   string line;
-   int count = 1;
-   while (getline(file, line))
-   {
-       stringstream ss(line);
-       string name, contact, details;
+        if (getline(foundFile, foundLine)) {
+            stringstream ss(foundLine);
+            string name, contact, details;
+            getline(ss, name, '|');
+            getline(ss, contact, '|');
+            getline(ss, details, '|');
+            foundText = name + " - " + contact + " - " + details;
+        }
 
-       getline(ss, name, '|');
-       getline(ss, contact, '|');
-       getline(ss, details, '|'); // Read until the next delimiter (or end)
+        if (lostText.empty() && foundText.empty()) break;
 
-       cout << "Found Item " << count++ << ":\n";
-       cout << "  Name: " << name << "\n";
-       cout << "  Contact: " << contact << "\n";
-       cout << "  Details: " << details << "\n\n";
-   }}
+        cout << left << setw(50) << lostText
+             << "| " << left << setw(50) << foundText << '\n';
+    }
+
+    lostFile.close();
+    foundFile.close();
+}
+

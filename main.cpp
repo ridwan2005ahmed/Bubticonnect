@@ -18,9 +18,8 @@ void showMenu()
     name();
 cout<<nx<<nx;
 
-viewLostInfo();
-// cout << "\t" << "\t" << "\t" << "\t" << "\t" << "\t" << "\t" << "\t" ;
-viewFindInfo();
+viewSideBySide();
+
 cout<< nx;
 
 cout << "What do you want ?" << nx << nx;
