@@ -1,8 +1,0 @@
-						Bubt I Connect
-What do you want ?
-1.Smart RoadMap of varsity
-2.Lost and find
-3.FAQ
-4.Exit
-Wrong input
-Please enter the correct number : 
