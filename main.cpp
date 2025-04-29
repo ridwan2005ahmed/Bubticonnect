@@ -16,16 +16,18 @@ void name()
 void showMenu()
 {
     name();
-cout<<nx<<nx<<nx;
+cout<<nx<<nx;
 
 viewLostInfo();
-cout<<nx<<nx<<nx;
+// cout << "\t" << "\t" << "\t" << "\t" << "\t" << "\t" << "\t" << "\t" ;
+viewFindInfo();
+cout<< nx;
 
-    cout << "What do you want ?" << nx;
-    cout << "1.Smart RoadMap of varsity" << nx;
-    cout << "2.Lost and find" << nx;
-    cout << "3.FAQ" << nx;
-    cout << "0.Exit" << nx;
+cout << "What do you want ?" << nx << nx;
+cout << "1.Smart RoadMap of varsity" << nx;
+cout << "2.Lost and find" << nx;
+cout << "3.FAQ" << nx;
+cout << "0.Exit" << nx;
 }
 void wrongInput()
 {
@@ -47,7 +49,7 @@ void faq()
     cin >> option;
 }
 int main()
-{
+{system("cls");
 
     int choice;
     do

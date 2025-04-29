@@ -4,7 +4,8 @@
 #include <fstream>
 using namespace std;
 #define nx '\n'
-void viewLostInfo();
+void addLostInfo();void viewLostInfo();void addFindInfo(); 
+void viewFindInfo();
 void lostAndFound()
 {
     int option;
@@ -26,7 +27,7 @@ void lostAndFound()
             addLostInfo();
             break;
         case 2:
-            cout << "nothing"<<nx;
+        addFindInfo();
             break;
 
         case 0:
@@ -66,20 +67,13 @@ void addLostInfo()
         file.close();
         cout << "Everything Entered Successfully: " << name << endl;
     }
-    else
-    {
-        cerr << "Error opening the file!" << endl;
-    }
+ 
 }
 
 void viewLostInfo()
 {
      ifstream file("data/lostinfo.txt");
-    // if (!file.is_open())
-    // {
-    //     cerr << "Could not open the file!" << endl;
-    //     return;
-    // }
+
 
     string line;
     int count = 1;
@@ -100,3 +94,49 @@ void viewLostInfo()
 
     file.close();
 }
+void addFindInfo(){
+    string name, contact, details;
+
+    cout << "Enter Found item info (name): ";
+    getline(cin, name);
+
+    cout << "Enter contact Number: ";
+    getline(cin, contact); 
+
+    cout << "Enter Details: ";
+    getline(cin, details);
+
+    ofstream file("data/findinfo.txt", ios::out | ios::app);
+    if (file.is_open())
+    {
+        file << name << "|" << contact << "|" << details << "\n";
+        file.close();
+        cout << "Everything Entered Successfully: " << name << endl;
+    }
+  
+}
+
+
+
+
+void viewFindInfo()
+
+   { ifstream file("data/findinfo.txt");
+
+
+   string line;
+   int count = 1;
+   while (getline(file, line))
+   {
+       stringstream ss(line);
+       string name, contact, details;
+
+       getline(ss, name, '|');
+       getline(ss, contact, '|');
+       getline(ss, details, '|'); // Read until the next delimiter (or end)
+
+       cout << "Found Item " << count++ << ":\n";
+       cout << "  Name: " << name << "\n";
+       cout << "  Contact: " << contact << "\n";
+       cout << "  Details: " << details << "\n\n";
+   }}
