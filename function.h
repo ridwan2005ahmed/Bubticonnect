@@ -1,0 +1,2 @@
+void lostAndFound();
+void viewLostInfo();

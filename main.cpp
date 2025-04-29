@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #include <cstdlib> // for exit
+#include "function.h"
 using namespace std;
-
 #define ll long long
 #define l long
 #define I int
@@ -16,8 +16,12 @@ void name()
 void showMenu()
 {
     name();
-    cout << "What do you want ?" << nx;
+cout<<nx<<nx<<nx;
 
+viewLostInfo();
+cout<<nx<<nx<<nx;
+
+    cout << "What do you want ?" << nx;
     cout << "1.Smart RoadMap of varsity" << nx;
     cout << "2.Lost and find" << nx;
     cout << "3.FAQ" << nx;
@@ -30,17 +34,8 @@ void wrongInput()
     cout << "----------Please enter the correct number----------" << nx << nx;
 }
 
-
-
-
-
-
-
-
-
-
-// lost and found  
-void lostAndFound()
+// FAQ
+void faq()
 {
     int option;
     cout << "\n--- Lost and Found ---\n";
@@ -50,37 +45,6 @@ void lostAndFound()
     cout << "4. View Found Items\n";
     cout << "Choose an option: ";
     cin >> option;
-    cin.ignore();
-    switch (option)
-    {
-    case 1:
-        // addLostInfo();
-        break;
-    case 2:
-        // addFoundInfo();
-        break;
-    case 3:
-        // viewLostInfo();
-        break;
-    case 4:
-        // viewFoundInfo();
-        break;
-    default:
-        cout << "Invalid option. Please try again." << nx;
-        break;
-    }
-}
-// FAQ 
-void faq(){
-    int option;
-    cout << "\n--- Lost and Found ---\n";
-    cout << "1. Add Lost Item\n";
-    cout << "2. Add Found Item\n";
-    cout << "3. View Lost Items\n";
-    cout << "4. View Found Items\n";
-    cout << "Choose an option: ";
-    cin >> option;
-    
 }
 int main()
 {
@@ -90,16 +54,19 @@ int main()
     {
         showMenu();
         cin >> choice;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear input buffer
 
         system("cls"); // Always clear screen before showing next page
 
         switch (choice)
         {
         case 1:
-            lostAndFound();
+            cout << "working" << nx;
             break;
         case 2:
-            cout << "Lost and Find feature is under development!" << nx;
+
+            lostAndFound();
+
             break;
         case 3:
             faq();
@@ -114,7 +81,6 @@ int main()
         if (choice != 0)
         {
             cout << "\nPress Enter to continue...";
-            cin.ignore();
             cin.get(); // Wait for Enter
             system("cls");
         }
