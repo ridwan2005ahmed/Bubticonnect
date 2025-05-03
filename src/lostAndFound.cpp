@@ -4,8 +4,8 @@
 #include <fstream>
 using namespace std;
 #define nx '\n'
-void addLostInfo();void viewLostInfo();void addFindInfo(); 
-void viewFindInfo();
+void addLostInfo();
+void addFindInfo(); 
 void lostAndFound()
 {
     int option;
