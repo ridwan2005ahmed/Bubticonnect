@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #include <cstdlib> // for exit
-#include "function.h"
+#include "src/function.h"
 using namespace std;
 #define ll long long
 #define l long
