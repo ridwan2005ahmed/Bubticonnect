@@ -35,18 +35,7 @@ void wrongInput()
     cout << "----------Please enter the correct number----------" << nx << nx;
 }
 
-// FAQ
-void faq()
-{
-    int option;
-    cout << "\n--- Lost and Found ---\n";
-    cout << "1. Add Lost Item\n";
-    cout << "2. Add Found Item\n";
-    cout << "3. View Lost Items\n";
-    cout << "4. View Found Items\n";
-    cout << "Choose an option: ";
-    cin >> option;
-}
+
 int main()
 {system("cls");
 
