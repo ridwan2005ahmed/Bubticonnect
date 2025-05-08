@@ -51,7 +51,7 @@ int main()
         switch (choice)
         {
         case 1:
-            cout << "working" << nx;
+            maP();
             break;
         case 2:
 
