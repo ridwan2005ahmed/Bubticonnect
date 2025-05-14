@@ -8,3 +8,8 @@ void faq();
 void maP();
 // complaint box
 void complaint();
+// chatbot
+void chatbot();
+// notice
+void marqueeText();
+void notice();

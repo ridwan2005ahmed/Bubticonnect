@@ -1,0 +1,30 @@
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define nx "\n"
+// void chatbot();
+// void chatbot(){
+//     system("cls");
+//     string question;
+//     cout << "Hi! this is Chat AI for the general students of BUBt" << nx;
+//     cout << "Feel free to ask any question or (type 'exit' to end) " << nx;
+//     getline(cin, question);
+//     if (question == "exit")
+//     {
+//         cout << "Thank you for using Chat AI. Goodbye!" << nx;
+//         return;
+//     }
+//     // Structure to hold question-answer pairs
+// struct QA {
+//     string question;
+//     string answer;
+// };
+
+// vector<QA> information;  
+// // Function to convert string to lowercase
+// string toLower(const string& str) {
+//     string lowerStr = str;
+//     transform(lowerStr.begin(), lowerStr.end(), lowerStr.begin(), 
+//               [](unsigned char c){ return tolower(c); });
+//     return lowerStr;
+// }
+// }

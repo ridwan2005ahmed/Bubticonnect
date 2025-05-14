@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 #include <cstdlib> // for exit
 #include "src/function.h"
+#include <windows.h>
 using namespace std;
 #define ll long long
 #define l long
@@ -37,12 +38,13 @@ void wrongInput()
 }
 
 
+
 int main()
 {system("cls");
 
     int choice;
     do
-    {
+    {   
         showMenu();
         cin >> choice;
         cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear input buffer
