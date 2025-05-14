@@ -26,6 +26,7 @@ cout << "What do you want ?" << nx << nx;
 cout << "1.Smart RoadMap of varsity" << nx;
 cout << "2.Lost and find" << nx;
 cout << "3.FAQ" << nx;
+cout << "4.Complaint Box" << nx;
 cout << "0.Exit" << nx;
 }
 void wrongInput()
@@ -60,6 +61,11 @@ int main()
             break;
         case 3:
             faq();
+            break;
+
+        case 4:
+             complaint();
+
             break;
         case 0:
             cout << "Exiting... Thank you for using Bubt I Connect!" << nx;
