@@ -1,3 +1,5 @@
+#include <string>
+using namespace std;
 void lostAndFound();
 void addFindInfo();
 void viewSideBySide();
@@ -13,3 +15,4 @@ void chatbot();
 // notice
 void marqueeText();
 void notice();
+void colorText(string text, int textColor, int bgColor);

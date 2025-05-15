@@ -11,7 +11,10 @@ using namespace std;
 
 void name()
 {
-    cout << "\t" << "\t" << "\t" << "\t" << "\t" << "\t" << "Bubt I Connect" << nx;
+
+    cout << "\t" << "\t" << "\t" << "\t" << "\t" << "\t"  ;
+    colorText("Bubt I Connect", 4, 2);
+    cout << nx;
 }
 // main menu
 void showMenu()

@@ -1,3 +1,8 @@
+VC (Vice Chancellor) Prof. Dr. A B M Shawkat Ali ,Contact info : Email - vc@bubt.edu.bd
+Md. Saifur Rahman ,(Chairman) Dept. of CSE,Email - saifurs@gmail.com , Office Room: 308, Building: B-1 BUBT
+Abul Lais M. S. Haque (Dean & Professor) Dept. of CSE
+Md Ashraful Islam (Assistant Professor),Room-314, Building: B-1 BUBT,Contact info : Phone - 01723777711 Email - ashraful@bubt.edu.bd
+Maruf Billah,(Lecturer)Dept. of CSE, Email - marufbillah@bubt.edu.bd ,Office Room: , Building: MTA/407 BUBT
 Library,building-3(2nd floor)
 Reading rooms,building-3(3rd floor)
 Medical Center,building-3(room number-205)
@@ -28,7 +33,6 @@ Algorithm and Problem Solving Lab & Networking and Mobile System Lab,building-2(
 Artificial Intelligence and Computer Vision Lab,building-2(room number-517)
 Microprocessor and Interfacing Lab & VLSI Design Lab,building-2(room number-619)
 Chairman, Department of EEE,building-3(room number-603)
-Chairman, Department of Computer Science and Engineering,building-1(room number-308)
 Reception – Ground Floor
 Information & Admission Unit – Ground Floor
 Administrative Offices (Vice-Chancellor, Advisor, Treasurer, Registrar and Accounts Office) – 1st floor
