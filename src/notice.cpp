@@ -126,9 +126,9 @@ void addnotice() {
 void show_imp_notice() {
     ifstream file("data/notice.txt");
     string line;
- cout<< u8"📢 Important Notice"<<nx<<nx;
-    cout << left << setw(50) << "Title" << '\n';
-    cout << string(100, '-') << '\n';
+ cout<< u8"📢 Important Notice"<<nx;
+   // cout << left << setw(50) << "Title" << '\n';
+    cout << string(105, '-') << '\n';
 
     while (getline(file, line)) {
         stringstream ss(line);
@@ -139,5 +139,5 @@ void show_imp_notice() {
     }
 
     file.close();
-    cout<< nx;
+       cout << string(105, '-') << '\n';
 }
