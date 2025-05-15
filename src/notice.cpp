@@ -3,36 +3,33 @@
 #include <windows.h>
 #include <cstdlib>
 
+// Add declarations for setColor and drawLine if not already present in function.h
+void setColor(int textColor, int bgColor);
+void drawLine(char ch, int length);
+
 using namespace std;
 #define nx "\n"
 
-void marqueeText(string text, int delay = 200) {
-    string scroll = text + "   ";
-    while (true) {
-        system("cls");
-        cout << scroll << endl;
-        scroll = scroll.substr(1) + scroll[0];
-        Sleep(delay);
-    }
-}
 
-int option;
+
+int options;
 
 void addnotice();
 void shownotice();
+void show_imp_notice();
 
 void notice() {
     do {
         cout << "1. Show Notice" << nx;
         cout << "2. Add Notice" << nx;
         cout << "0. Back to Main Menu\n";
-        cout << "Choose an option: ";
-        cin >> option;
+        cout << "Choose an options: ";
+        cin >> options;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         system("cls");
 
-        switch (option) {
+        switch (options) {
             case 1:
                 shownotice();
                 break;
@@ -47,12 +44,12 @@ void notice() {
                 cout << "----------Please enter the correct number----------" << nx;
         }
 
-        if (option != 0) {
+        if (options != 0) {
             cout << "\nPress Enter to continue...";
             cin.get();
             system("cls");
         }
-    } while (option != 0);
+    } while (options != 0);
 }
 
 void shownotice() {
@@ -121,4 +118,26 @@ void addnotice() {
     } else {
         cerr << "Failed to open notice file!" << endl;
     }
+}
+
+
+
+
+void show_imp_notice() {
+    ifstream file("data/notice.txt");
+    string line;
+ cout<< u8"📢 Important Notice"<<nx<<nx;
+    cout << left << setw(50) << "Title" << '\n';
+    cout << string(100, '-') << '\n';
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+        string title;
+        getline(ss, title, '|');
+        
+        cout << left << setw(50) << title<< '\n';
+    }
+
+    file.close();
+    cout<< nx;
 }

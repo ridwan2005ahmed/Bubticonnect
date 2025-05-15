@@ -50,17 +50,17 @@ Workshop Practice Lab,Chemistry Lab & Apparel Manufacturing Lab–building-1, Ro
 Mobile App & Gaming Testing Lab–building-1,room-301
 Structural Mechanics Lab & Engineering Materials Lab–building-1,Room-106
 Language Lab–building-1,Room-401
-Prayer Room (Female) –building-1,Room-310 
+Prayer Room (Female)–building-1,Room-310 
 Common Room (Female)–building-1,Room-311
 Registration-–building-3,Room-102
 Psychologist(Mou Juliet)–building-3(ground floor,Sunday to Thursday -schedule-9AM to 5PM)
-Dean, Faculty of Business & Social Sciences →building-4, Room-802 (8th Floor)  
-Director, MBA Program →building-4, Room-602 (6th Floor)  
-Chairman, Department of Management →building-4, Room-902 (9th Floor)  
-Chairman, Department of Marketing →building-4, Room-706 (9th Floor)  
-Chairman, Department of Accounting → building-4,Room-606 (6th Floor)  
-Chairman, Department of Finance →building-4, Room-507 (5th Floor)  
-Chairman, Department of Mathematics & Statistics →building-4, Room-406 (4th Floor)
+Dean, Faculty of Business & Social Sciences -building-4, Room-802 (8th Floor)  
+Director, MBA Program -building-4, Room-602 (6th Floor)  
+Chairman, Department of Management -building-4, Room-902 (9th Floor)  
+Chairman, Department of Marketing -building-4, Room-706 (9th Floor)  
+Chairman, Department of Accounting - building-4,Room-606 (6th Floor)  
+Chairman, Department of Finance -building-4, Room-507 (5th Floor)  
+Chairman, Department of Mathematics & Statistics -building-4, Room-406 (4th Floor)
 Career Guidance, Counseling & International Affairs Office-building-4, Room-103 
 Computer Lab-Room-building-4,301
 Engineering Unit-Room-building-4,104

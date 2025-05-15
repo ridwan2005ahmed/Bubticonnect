@@ -12,7 +12,12 @@ void maP();
 void complaint();
 // chatbot
 void chatbot();
+void runChatbot();
+void chatbot2() ;
 // notice
-void marqueeText();
+void show_imp_notice();
 void notice();
-void colorText(string text, int textColor, int bgColor);
+void shownotice();
+
+string inputPassword() ;
+
