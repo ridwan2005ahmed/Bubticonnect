@@ -52,11 +52,10 @@ void showMenu() {
     cout << u8"🧭  What do you want to access today?" << nx << nx;
 
     setColor(2, 15); cout << u8" 1. 🗺️  Smart RoadMap of varsity" << nx;
-    setColor(3, 15); cout << u8" 2. 🧳 Lost and Find" << nx;
-    setColor(6, 15); cout << u8" 3. ❓ FAQ" << nx;
-    setColor(4, 15); cout << u8" 4. 📝 Complaint Box" << nx;
-    setColor(5, 15); cout << u8" 5. 📢 Notice" << nx;
-    setColor(9, 15); cout << u8" 6. 🤖 Chat Bot" << nx;
+    setColor(3, 15); cout << u8" 2. 🧳 Lost and Found" << nx;
+    setColor(4, 15); cout << u8" 3. 📝 Complaint Box" << nx;
+    setColor(5, 15); cout << u8" 4. 📢 Notice" << nx;
+    setColor(9, 15); cout << u8" 5. 🤖 Chat Bot" << nx;
 
     setColor(12, 15); cout << u8" 0. ❌ Exit" << nx;
 
@@ -98,16 +97,14 @@ int main() {
             case 2:
                 lostAndFound();
                 break;
+           
             case 3:
-                faq();
-                break;
-            case 4:
                 complaint();
                 break;
-            case 5:
+            case 4:
                 notice();
                 break;
-            case 6:
+            case 5:
                 runChatbot();
                 break;
             case 0:
