@@ -3,16 +3,16 @@ using namespace std;
 void lostAndFound();
 void addFindInfo();
 void viewSideBySide();
-// faq
-void faq();
-
 // map
 void maP();
 // complaint box
 void complaint();
 // chatbot
-void chatbot();
+void runChatbot();
 // notice
-void marqueeText();
+void show_imp_notice();
 void notice();
-void colorText(string text, int textColor, int bgColor);
+void shownotice();
+
+string inputPassword() ;
+
