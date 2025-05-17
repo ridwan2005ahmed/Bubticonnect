@@ -336,6 +336,13 @@ void runChatbot()
             speak("Opening Calculator");
             continue;
         }
+        if (query == "open cmd")
+        {
+            system("start cmd");
+            cout << "Bubt I connect: Opening cmd..." << endl;
+            speak("Opening cmd");
+            continue;
+        }
 
         // Main query processing
         string response = findBestMatch(query, chatData);

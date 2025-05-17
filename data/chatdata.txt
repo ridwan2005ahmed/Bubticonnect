@@ -28,7 +28,7 @@ what is ai|AI stands for Artificial Intelligence computers mimicking human intel
 how is the weather today|I can not check weather yet, but you can ask Google for that.
 tell me about yourself|I am a virtual assistant designed to help with your tasks and questions.
 how do i code in c++|Start by learning syntax, variables, loops, functions, and practice a lot!
-can you open notepad|Please type “open notepad” to open Notepad.
+can you open notepad|Please type open notepad to open Notepad.
 what documents are required for admission?|HSC/SSC Certificate (photocopy), HSC/SSC mark sheet, SSC registration card, NID or Birth Certificate, and 2 passport size photographs.
 what are the minimum requirements for applying in the undergraduate program?|GPA of at least 2.50 in both SSC and HSC or equivalent. Or GPA of 2.00 in either SSC or HSC but total must be 6.00. For O/A level: at least 4 subjects with B and 3 with C. Science with Math and Physics needed for CSE/EEE; Math, Physics, Chemistry for Textile/Civil. Various tuition fee waivers available.
 what is the tuition fee waiver for poor and meritorious students?|10% to 100% tuition fee waiver is available for poor and meritorious students.
@@ -54,9 +54,9 @@ how to pay tuition fees|You can pay your tuition fees at the bank or through the
 what is the minimum cgpa to avoid probation|You must maintain a minimum CGPA of 2.00 to avoid academic probation.
 how to apply for semester drop|Submit a formal application to the department with valid reasons and approval from authority.
 what is the class routine|You can find your class routine on the department notice board or university website.
-can you open calculator|Please type "open calculator" and I will open it for you.
-can you open notepad|Please type “open notepad” to open Notepad.
-can you open cmd|Please type "open cmd" to open the Command Prompt.
+can you open calculator|Please type open calculator and I will open it for you.
+can you open notepad|Please type open notepad to open Notepad.
+can you open cmd|Please type open cmd to open the Command Prompt.
 can you shutdown the pc|I cannot shut down your PC for safety reasons.
 can you open browser|Please specify which browser to open: Chrome, Firefox, or Edge.
 tell me something funny|Why did the computer show up late to work? It had a hard drive!
