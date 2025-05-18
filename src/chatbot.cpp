@@ -1,99 +1,134 @@
-#include "function.h"
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <map>
-#include <vector>
-#include <windows.h>
-#include <algorithm>
-#include <ctime>
-#include <sstream>
+#include "function.h"                // Custom header file (assumed to contain function declarations)
+#include <iostream>                 // For input/output
+#include <fstream>                  // For file operations
+#include <string>                   // For string manipulations
+#include <map>                      // For storing chat data as key-value pairs
+#include <vector>                   // For using dynamic arrays
+#include <windows.h>                // For Windows-specific APIs (console color, system calls, etc.)
+#include <algorithm>                // For transformations like tolower, min, etc.
+#include <ctime>                    // For working with time and date
+#include <sstream>                  // For string stream operations
 
 using namespace std;
 
-// Trim whitespace helper
-string trim(const string &s) {
+// ======================
+// Helper function to trim whitespace from both ends of a string
+string trim(const string &s)
+{
     size_t start = 0;
-    while (start < s.size() && isspace(s[start])) start++;
+    //start < s.size() && 
+    while (isspace(s[start])) start++;
     size_t end = s.size();
     while (end > start && isspace(s[end - 1])) end--;
     return s.substr(start, end - start);
 }
 
-string escapeDoubleQuotes(const string &text) {
-    string escaped = text;
-    size_t pos = 0;
-    while ((pos = escaped.find('"', pos)) != string::npos) {
-        escaped.replace(pos, 1, "\\\"");
-        pos += 2;
-    }
-    return escaped;
-}
+// ======================
+// Escape double quotes for PowerShell compatibility
+// string escapeDoubleQuotes(const string &text)
+// {
+//     string escaped = text;
+//     size_t pos = 0;
+//     while ((pos = escaped.find('"', pos)) != string::npos)
+//     {
+//         escaped.replace(pos, 1, "\\\"");  // Replace " with \"
+//         pos += 2;
+//     }
+//     return escaped;
+// }
 
-void speak(const string &phrase) {
-    string escapedPhrase = escapeDoubleQuotes(phrase);
+// ======================
+// Speak using Microsoft's speech synthesis
+void speak(const string &phrase)
+{
+    //  = escapeDoubleQuotes(phrase);
 
+    // PowerShell command to speak using Microsoft Zira voice
     string command = "powershell -Command \"Add-Type -AssemblyName System.Speech; "
-                   "$speak = New-Object System.Speech.Synthesis.SpeechSynthesizer; "
-                   "$speak.SelectVoice('Microsoft Zira Desktop'); "
-                   "$speak.Volume = 90; "  // Normal volume
-                   "$speak.Rate = 0; "
-                   "$speak.Speak(\\\"" + escapedPhrase + "\\\")\"";
-
-    system(command.c_str());
+                     "$speak = New-Object System.Speech.Synthesis.SpeechSynthesizer; "
+                     "$speak.SelectVoice('Microsoft Zira Desktop'); "
+                     "$speak.Volume = 90; "
+                     "$speak.Rate = 0; "
+                     "$speak.Speak(\\\"" + phrase + "\\\")\"";
+    system(command.c_str());  // Execute the command
 }
 
-void speakEmergency(const string &phrase) {
-    string escapedPhrase = escapeDoubleQuotes(phrase);
+// ======================
+// Speak in emergency mode (faster, louder, and red background)
+// void speakEmergency(const string &phrase)
+// {
 
-    string command = "powershell -Command \"Add-Type -AssemblyName System.Speech; "
-                   "$speak = New-Object System.Speech.Synthesis.SpeechSynthesizer; "
-                   "$speak.SelectVoice('Microsoft Zira Desktop'); "
-                   "$speak.Volume = 100; "  // Max volume for emergencies
-                   "$speak.Rate = 2; "      // Faster speech for urgency
-                   "$speak.Speak(\\\"" + escapedPhrase + "\\\")\"";
+//     //  = escapeDoubleQuotes(phrase);
 
-    // Visual alert for emergencies
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hConsole, BACKGROUND_RED | FOREGROUND_INTENSITY);
-    system(command.c_str());
-    SetConsoleTextAttribute(hConsole, 15); // Reset to default
-}
+//     // Save current console attributes
+//     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+//     CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+//     WORD saved_attributes;
+//     GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+//     saved_attributes = consoleInfo.wAttributes;
 
-bool loadChatData(const string &filename, map<string, string> &chatData) {
+//     // Set background to red (emergency style)
+//     SetConsoleTextAttribute(hConsole, BACKGROUND_RED | FOREGROUND_INTENSITY);
+
+//     // Speak with fast rate and full volume
+//     string command = "powershell -Command \"Add-Type -AssemblyName System.Speech; "
+//                      "$speak = New-Object System.Speech.Synthesis.SpeechSynthesizer; "
+//                      "$speak.SelectVoice('Microsoft Zira Desktop'); "
+//                      "$speak.Volume = 100; "
+//                      "$speak.Rate = 2; "
+//                      "$speak.Speak(\\\"" + phrase + "\\\")\"";
+//     system(command.c_str());
+
+//     // Restore original console style
+//     SetConsoleTextAttribute(hConsole, saved_attributes);
+// }
+// ======================
+// Load chat data from a file into a map
+bool loadChatData(const string &filename, map<string, string> &chatData)
+{
     ifstream file(filename);
-    if (!file.is_open()) {
+    if (!file.is_open())
+    {
         cerr << "Failed to open chat data file: " << filename << endl;
         return false;
     }
 
     string line;
-    while (getline(file, line)) {
+    while (getline(file, line))
+    {
         size_t delimPos = line.find('|');
-        if (delimPos != string::npos) {
+        if (delimPos != string::npos)
+        {
             string question = trim(line.substr(0, delimPos));
             string answer = trim(line.substr(delimPos + 1));
             transform(question.begin(), question.end(), question.begin(), ::tolower);
-            chatData[question] = answer;
+            chatData[question] = answer;  // Store in map
         }
     }
     file.close();
-    return true;
+   return true;
 }
 
-string toLower(const string &s) {
+// ======================
+// Convert a string to lowercase
+string toLower(const string &s)
+{
     string copy = s;
     transform(copy.begin(), copy.end(), copy.begin(), ::tolower);
     return copy;
 }
 
-vector<string> splitIntoWords(const string &s) {
+// ======================
+// Split a string into words (ignores punctuation)
+vector<string> splitIntoWords(const string &s)
+{
     vector<string> words;
     string current;
-    for (char c : s) {
-        if (isalpha(c) || c == '\'') {
-            current += c;
-        } else if (!current.empty()) {
+    for (char c : s)
+    {
+        if (isalpha(c) || c == '\'') current += c;
+        else if (!current.empty())
+        {
             words.push_back(current);
             current.clear();
         }
@@ -102,21 +137,24 @@ vector<string> splitIntoWords(const string &s) {
     return words;
 }
 
-int calculateSimilarity(const string &s1, const string &s2) {
+// ======================
+// Levenshtein distance-based similarity percentage (edit distance)
+int calculateSimilarity(const string &s1, const string &s2)
+{
     const size_t len1 = s1.size(), len2 = s2.size();
     vector<vector<int>> dp(len1 + 1, vector<int>(len2 + 1));
 
     for (size_t i = 0; i <= len1; ++i) dp[i][0] = i;
     for (size_t j = 0; j <= len2; ++j) dp[0][j] = j;
 
-    for (size_t i = 1; i <= len1; ++i) {
-        for (size_t j = 1; j <= len2; ++j) {
-            int cost = (s1[i-1] == s2[j-1]) ? 0 : 1;
-            dp[i][j] = min({
-                dp[i-1][j] + 1,
-                dp[i][j-1] + 1,
-                dp[i-1][j-1] + cost
-            });
+    for (size_t i = 1; i <= len1; ++i)
+    {
+        for (size_t j = 1; j <= len2; ++j)
+        {
+            int cost = (s1[i - 1] == s2[j - 1]) ? 0 : 1;
+            dp[i][j] = min({dp[i - 1][j] + 1,
+                            dp[i][j - 1] + 1,
+                            dp[i - 1][j - 1] + cost});
         }
     }
 
@@ -125,7 +163,10 @@ int calculateSimilarity(const string &s1, const string &s2) {
     return 100 - (100 * dp[len1][len2]) / maxLen;
 }
 
-string getCurrentTime() {
+// ======================
+// Get current system time in 12-hour format
+string getCurrentTime()
+{
     time_t now = time(nullptr);
     tm *ltm = localtime(&now);
     char timeStr[50];
@@ -133,7 +174,10 @@ string getCurrentTime() {
     return string(timeStr);
 }
 
-string getCurrentDate() {
+// ======================
+// Get current date in full format
+string getCurrentDate()
+{
     time_t now = time(nullptr);
     tm *ltm = localtime(&now);
     char dateStr[50];
@@ -141,152 +185,172 @@ string getCurrentDate() {
     return string(dateStr);
 }
 
-string findBestMatch(const string &userQuery, const map<string, string> &chatData) {
+// ======================
+// Find best match for user's query
+string findBestMatch(const string &userQuery, const map<string, string> &chatData)
+{
     string query = toLower(trim(userQuery));
-    
-    // 1. Exact match check
+
+    // 1. Exact match
     auto exactMatch = chatData.find(query);
-    if (exactMatch != chatData.end()) {
+    if (exactMatch != chatData.end())
+    {
         string response = exactMatch->second;
-        // Handle dynamic content
+        // Handle dynamic tags for date/time
         size_t datePos = response.find("[DYNAMIC_DATE]");
-        if (datePos != string::npos) {
+        if (datePos != string::npos)
             response.replace(datePos, 14, getCurrentDate());
-        }
+
         size_t timePos = response.find("[DYNAMIC_TIME]");
-        if (timePos != string::npos) {
+        if (timePos != string::npos)
             response.replace(timePos, 14, getCurrentTime());
-        }
+
         return response;
     }
 
-    // 2. Special cases
-    if (query.find("first aid") != string::npos || 
+    // 2. Hardcoded emergency response
+    if (query.find("first aid") != string::npos ||
         query.find("medical emergency") != string::npos ||
-        query.find("emergency") != string::npos) {
-        return "URGENT: Medical Center is on Ground floor, Admin Building. Emergency: 017XX-XXXXXX";
+        query.find("emergency") != string::npos)
+    {
+        return "URGENT: Medical Center is on Ground floor, Admin Building. Emergency: 01723456780.";
     }
 
-    // 3. Date/time queries
-    if (query.find("date") != string::npos || query.find("today") != string::npos) {
+    // 3. Date/time fallback response
+    if (query.find("date") != string::npos || query.find("today") != string::npos)
         return "Today's date is " + getCurrentDate();
-    }
-    if (query.find("time") != string::npos || query.find("current time") != string::npos) {
+    if (query.find("time") != string::npos || query.find("current time") != string::npos)
         return "The current time is " + getCurrentTime();
-    }
 
-    // 4. Fuzzy matching
+    // 4. Fuzzy match based on edit distance
     string bestMatch;
     int highestSimilarity = 0;
     const int SIMILARITY_THRESHOLD = 50;
 
-    for (const auto &pair : chatData) {
+    for (const auto &pair : chatData)
+    {
         int similarity = calculateSimilarity(query, pair.first);
-        if (similarity > highestSimilarity && similarity >= SIMILARITY_THRESHOLD) {
+        if (similarity > highestSimilarity && similarity >= SIMILARITY_THRESHOLD)
+        {
             highestSimilarity = similarity;
             bestMatch = pair.second;
         }
     }
+    if (!bestMatch.empty()) return bestMatch;
 
-    if (!bestMatch.empty()) {
-        return bestMatch;
-    }
-
-    // 5. Partial word matching
+    // 5. Partial word match fallback
     vector<string> queryWords = splitIntoWords(query);
-    for (const auto &pair : chatData) {
+    for (const auto &pair : chatData)
+    {
         vector<string> keyWords = splitIntoWords(pair.first);
-        
-        for (const auto &qw : queryWords) {
-            for (const auto &kw : keyWords) {
-                if (qw == kw && kw.length() > 3) {
+
+        for (const auto &qw : queryWords)
+        {
+            for (const auto &kw : keyWords)
+            {
+                if (qw == kw && kw.length() > 3)
                     return pair.second;
-                }
             }
         }
-        
-        if (query.find(pair.first) != string::npos || 
-            pair.first.find(query) != string::npos) {
+
+        if (query.find(pair.first) != string::npos || pair.first.find(query) != string::npos)
             return pair.second;
-        }
     }
 
+    // Default fallback
     return "Sorry, I don't understand that. Please try another question.";
 }
 
-void runChatbot() {
-    system("cls");
+// ======================
+// Main chatbot function
+void runChatbot()
+{
+    system("cls");  // Clear console screen
+
+    // Display welcome banner
     cout << "==========================" << endl;
     cout << "  Chatbot Bubt I Connect  " << endl;
     cout << "==========================" << endl << endl;
 
+    // Load chat data from file
     map<string, string> chatData;
-    if (!loadChatData("data/chatdata.txt", chatData)) {
+    if (!loadChatData("data/chatdata.txt", chatData))
+    {
         cout << "Error loading chat data. Make sure 'chatdata.txt' exists." << endl;
         return;
     }
 
+    // Initial greeting
     speak("Hello! I am your BUBT assistant. How can I help you today?");
 
-    while (true) {
+    // Main loop
+    while (true)
+    {
         cout << "\nYou: ";
         string userInput;
         getline(cin, userInput);
         string query = toLower(trim(userInput));
 
-        if (query == "exit" || query == "bye" || query == "stop") {
+        // Exit condition
+        if (query == "exit" || query == "bye" || query == "stop")
+        {
             cout << "Bubt I connect: Goodbye! Have a nice day!" << endl;
             speak("Goodbye! Have a nice day!");
             break;
         }
 
-        // Special commands
-        if (query == "open youtube") {
+        // Predefined voice commands to open apps/websites
+        if (query == "open youtube")
+        {
             system("start https://www.youtube.com");
             cout << "Bubt I connect: Opening YouTube..." << endl;
             speak("Opening YouTube");
             continue;
         }
-        if (query == "open facebook") {
+        if (query == "open facebook")
+        {
             system("start https://www.facebook.com");
             cout << "Bubt I connect: Opening Facebook..." << endl;
             speak("Opening Facebook");
             continue;
         }
-        if (query == "open google") {
+        if (query == "open google")
+        {
             system("start https://www.google.com");
             cout << "Bubt I connect: Opening Google..." << endl;
             speak("Opening Google");
             continue;
         }
-        if (query == "open codeforces") {
+        if (query == "open codeforces")
+        {
             system("start https://codeforces.com");
             cout << "Bubt I connect: Opening Codeforces..." << endl;
             speak("Opening Codeforces");
             continue;
         }
-        if (query == "open notepad") {
+        if (query == "open notepad")
+        {
             system("notepad.exe");
             cout << "Bubt I connect: Opening Notepad..." << endl;
             speak("Opening Notepad");
             continue;
         }
-        if (query == "open calculator") {
+        if (query == "open calculator")
+        {
             system("calc.exe");
             cout << "Bubt I connect: Opening Calculator..." << endl;
             speak("Opening Calculator");
             continue;
         }
 
-        // Main query processing
+        // Handle general questions
         string response = findBestMatch(query, chatData);
         cout << "Bubt I connect: " << response << endl;
-        
-        // Special handling for emergency responses
-        if (response.find("URGENT") != string::npos) {
-            speakEmergency(response);
-        } else {
+
+        // Speak based on whether it's emergency or not
+        // if (response.find("URGENT") != string::npos)
+        //     speak(response);
+        // else
             speak(response);
-        }
     }
 }
